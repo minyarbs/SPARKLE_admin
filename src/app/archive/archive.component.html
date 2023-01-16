@@ -1,0 +1,26 @@
+<app-nav></app-nav>
+<section style="background-color: black;">
+    <div class="col-md-10 offset-md-1 mt-5 ">
+<h3 style="color: orangered;" class="text-center"> Parties completed</h3>
+  <br>
+  <table class="table text-white text-center ">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Date</th>
+        <th scope="col">Party type</th>
+        <th scope="col">Party theme</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ord of completed_orders; index as i">
+        <th scope="row">{{i}}</th>
+        <td>{{ord.order_Date}}</td>
+        <td>{{ord.party_type}}</td>
+        <td>{{ord.party_theme}}</td>
+      </tr>
+      
+    </tbody>
+  </table>
+    </div>
+</section>

@@ -1,0 +1,40 @@
+<app-nav></app-nav>
+<div id="main">
+<section style="background-color: black;">
+    <div class="col-md-10 offset-md-1 mt-5 ">
+<h3 style="color: orangered;" class="text-center"> Admins</h3>
+  <br>
+  <table class="table text-white text-center ">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Username</th>
+        <th scope="col">Password</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ord of list; index as i">
+        <th scope="row">{{i}}</th>
+        <td>{{ord.username}}</td>
+        <td>{{ord.password}}</td>
+        <td> <button style="background-color: orangered; color: white;" (click)="delete(ord._id)"> Delete </button></td>
+      </tr>
+      
+    </tbody>
+  </table>
+    <br>
+    <form [formGroup]="newSup" style="color: white;" (ngSubmit)="onSubmit()">
+
+        <label for="username" style="padding-right: 20px;">Username: </label>
+        <input id="username" type="text" formControlName="username" style="background-color: black;color: white; ">
+      
+        <label for="password" style="padding-left: 50px;padding-right: 20px;"> Password: </label>
+        <input id="password" type="text" formControlName="password" style="background-color: black;color: white;">
+
+        <button style="background-color: orangered; color: white;" type="submit" > Add </button>
+      </form>
+    </div>
+</section>
+</div>
+

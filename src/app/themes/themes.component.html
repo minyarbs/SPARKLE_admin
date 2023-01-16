@@ -1,0 +1,41 @@
+<app-nav></app-nav>
+<section style="background-color: black;">
+    <div class="col-md-10 offset-md-1 mt-5 ">
+<h3 style="color: orangered;" class="text-center"> Themes</h3>
+  <br>
+  <table class="table text-white text-center ">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Party</th>
+        <th scope="col">Theme</th>
+        <th scope="col">Cost</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ord of list; index as i">
+        <th scope="row">{{i}}</th>
+        <td>{{ord.party_type}}</td>
+        <td>{{ord.theme_name}}</td>
+        <td>{{ord.cost}}</td>
+        <td> <button style="background-color: orangered; color: white;" (click)="delete(ord._id)"> Delete </button></td>
+      </tr>
+      
+    </tbody>
+  </table>
+    <br>
+    <form [formGroup]="newSup" style="color: white;" (ngSubmit)="onSubmit()">
+
+        <label for="party_type" style="padding-right: 20px;">party type: </label>
+        <input id="party_type" type="text" formControlName="party_type" style="background-color: black;color: white; ">
+      
+        <label for="theme_name" style="padding-left: 50px;padding-right: 20px;"> theme name: </label>
+        <input id="theme_name" type="text" formControlName="theme_name" style="background-color: black;color: white;">
+
+        <label for="text" style="padding-right: 20px;padding-left: 50px;"> cost: </label>
+        <input id="text" type="text" formControlName="cost" style="background-color: black;color: white;">
+        <button style="background-color: orangered; color: white;" type="submit" > Add </button>
+      </form>
+    </div>
+</section>

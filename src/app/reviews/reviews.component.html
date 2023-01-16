@@ -1,0 +1,20 @@
+<app-nav></app-nav>
+<section style="background-color: black;">
+    <div class="col-md-10 offset-md-1 mt-5 ">
+<h3 style="color: orangered;" class="text-center"> Reviews</h3>
+  <br>
+  <table class="table text-white text-center ">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Content</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ord of list; index as i">
+        <th scope="row">{{i}}</th>
+        <td>{{ord.text}}</td>
+        </tr>
+      
+    </tbody>
+  </table>

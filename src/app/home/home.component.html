@@ -1,0 +1,78 @@
+<app-nav></app-nav>
+<div id="main">
+  <h6 style="color: rgba(21, 255, 0, 0.658) ;">{{date}}</h6>
+  <br>
+  <br>
+  <div class="card text-center " style="background-color: black;">
+    <div class="card-header">
+      <h3 class="orange-text">Quote of the Day</h3>
+    </div>
+    <div class="card-body">
+
+      <p class="card-text text-white" aria-setsize="20px">{{quote}}</p>
+
+    </div>
+
+  </div>
+
+  <br>
+  <br>
+  <div>
+    <h3 class="orange-text"> Parties in progress</h3>
+    <br>
+    <table class="table text-white text-center">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Date</th>
+          <th scope="col">Paiement</th>
+          <th scope="col">pourcentage of completed sub-orders</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let ord of incompleted_orders; index as i">
+
+        <tr>
+          <th scope="row">{{i}}</th>
+          <td>{{ord.order_Date}}</td>
+          <td>{{ord.paid}}</td>
+          <td>{{pourcentage_table[i]}}'%</td>
+          <td *ngIf="!ord.clicked"> <button style="background-color: orangered; color: white;" (click)="seedetails(i)">
+              see more details</button></td>
+          <td *ngIf="ord.clicked"> <button style="background-color: orangered; color: white;" (click)="hidedetails(i)">
+              see less details</button></td>
+
+        </tr>
+
+        <tr *ngIf="ord.clicked">
+          <td></td>
+          <td>
+            Party: {{ord.party_type}}
+            <br>
+            Theme: {{ord.party_theme}}
+          </td>
+          <td>
+            <h6>sub-orders not ready:</h6>
+            <p *ngIf="ord.flower_order==='not ready'"> flower order </p>
+            <p *ngIf="ord.deco_order==='not ready'"> deco order </p>
+            <p *ngIf="ord.cake_order==='not ready'"> cake order </p>
+            <p *ngIf="ord.balloons_order==='not ready'"> balloons order </p>
+            <p *ngIf="ord.snacks_order==='not ready'"> snacks order </p>
+          </td>
+          <td>
+            <h6>sub-orders ready but not delivered:</h6>
+            <p *ngIf="ord.flower_order==='ready'"> flower order </p>
+            <p *ngIf="ord.deco_order==='ready'"> deco order </p>
+            <p *ngIf="ord.cake_order==='ready'"> cake order </p>
+            <p *ngIf="ord.balloons_order==='ready'"> balloons order </p>
+            <p *ngIf="ord.snacks_order==='ready'"> snacks order </p>
+          </td>
+
+          <td><button style="background-color: rgba(21, 255, 0, 0.658); color: rgb(255, 255, 255);"
+              (click)="completePay(ord.id)"> Paiment
+              completed</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
