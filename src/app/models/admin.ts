@@ -1,6 +1,6 @@
 export class Admin{
+    id:number
     _id:string
-    id:string
-    username: string
-    password: string
+    UserName: string
+    Password: string
 }

@@ -8,12 +8,14 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Content</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let ord of list; index as i">
         <th scope="row">{{i}}</th>
         <td>{{ord.text}}</td>
+        <td><button style="background-color: orangered; color: white;" (click)="delete(ord.id)"> Delete </button></td>
         </tr>
       
     </tbody>

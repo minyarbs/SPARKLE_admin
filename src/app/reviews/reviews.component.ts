@@ -16,5 +16,8 @@ list:Review[]
     await lastValueFrom(this.service.getList());
     this.list=this.service.list;
   }
-
+  async delete(id: number){
+    await lastValueFrom(this.service.deleteReview(id));
+    
+  }
 }

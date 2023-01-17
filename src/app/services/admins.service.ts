@@ -12,11 +12,11 @@ list: Admin[]
   constructor( private http: HttpClient) { }
 getList(){
   this.list=[]
-  return  this.http.get<{[_id: string]: Admin}>('http://localhost:3000/admins/all')
+  return  this.http.get<{[id: string]: Admin}>('http://localhost:3000/admin')
   .pipe(map((res)=>{
-    for(const _id in res){
-      if(res.hasOwnProperty(_id)){
-      this.list.push({...res[_id], id:_id})
+    for(const id in res){
+      if(res.hasOwnProperty(id)){
+      this.list.push({...res[id], _id:id})
     } 
    
   }
@@ -24,11 +24,11 @@ getList(){
 }
 postNew(username:string,password:string){
   
- const res= this.http.post('http://localhost:3000/admins/new',{"username":username,"password":password})
+ const res= this.http.post('http://localhost:3000/admin',{"UserName":username,"Password":password})
  return res
 }
-deleteAccount(id:string){
-  return this.http.delete('http://localhost:3000/admins/'+id)
+deleteAccount(id:number){
+  return this.http.delete('http://localhost:3000/admin/'+id)
   
 }
 }

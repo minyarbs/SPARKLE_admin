@@ -1,4 +1,5 @@
 export class Review{
-    id:string;
+    id:number;
+    _id:string;
     text:string;
 }

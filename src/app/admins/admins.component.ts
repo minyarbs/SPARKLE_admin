@@ -24,7 +24,7 @@ this.getList();
     await lastValueFrom(this.ser.getList());
     this.list = this.ser.list
   }
-  async delete(id: string){
+  async delete(id: number){
     await lastValueFrom(this.ser.deleteAccount(id));
     this.getList();
     

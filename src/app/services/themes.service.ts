@@ -12,11 +12,11 @@ list: Theme[]
   constructor( private http: HttpClient) { }
 getList(){
   this.list=[]
-  return  this.http.get<{[_id: string]: Theme}>('http://localhost:3000/products')
+  return  this.http.get<{[id: string]: Theme}>('http://localhost:3000/products')
   .pipe(map((res)=>{
     for(const _id in res){
       if(res.hasOwnProperty(_id)){
-      this.list.push({...res[_id], id:_id})
+      this.list.push({...res[_id], _id:_id})
     } 
    
   }
@@ -24,11 +24,11 @@ getList(){
 }
 getListByParty(party_type:string){
   this.list=[]
-  return  this.http.get<{[_id: string]: Theme}>('http://localhost:3000/products/'+party_type)
+  return  this.http.get<{[id: string]: Theme}>('http://localhost:3000/products/'+party_type)
   .pipe(map((res)=>{
-    for(const _id in res){
-      if(res.hasOwnProperty(_id)){
-      this.list.push({...res[_id], id:_id})
+    for(const id in res){
+      if(res.hasOwnProperty(id)){
+      this.list.push({...res[id], _id:id})
     } 
    
   }
@@ -41,7 +41,7 @@ postNew(theme_name:string,
  return this.http.post('http://localhost:3000/products',{"theme_name":theme_name,"party_type":party_type,"cost":cost})
  
 }
-deleteAccount(id:string){
+deleteAccount(id:number){
   return this.http.delete('http://localhost:3000/products/'+id)
   
 }

@@ -15,9 +15,9 @@
     <tbody>
       <tr *ngFor="let ord of list; index as i">
         <th scope="row">{{i}}</th>
-        <td>{{ord.username}}</td>
-        <td>{{ord.role}}</td>
-        <td> <button style="background-color: orangered; color: white;" (click)="delete(ord._id)"> Delete </button></td>
+        <td>{{ord.UserName}}</td>
+        <td>{{ord.Role}}</td>
+        <td> <button style="background-color: orangered; color: white;" (click)="delete(ord.id)"> Delete </button></td>
       </tr>
       
     </tbody>

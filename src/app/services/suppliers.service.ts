@@ -12,11 +12,11 @@ list: Supplier[]
   constructor( private http: HttpClient) { }
 getList(){
   this.list=[]
-  return  this.http.get<{[_id: string]: Supplier}>('http://localhost:3000/suppliers-accounts/all')
+  return  this.http.get<{[id:string]: Supplier}>('http://localhost:3000/suppliers-accounts')
   .pipe(map((res)=>{
-    for(const _id in res){
-      if(res.hasOwnProperty(_id)){
-      this.list.push({...res[_id], id:_id})
+    for(const id in res){
+      if(res.hasOwnProperty(id)){
+      this.list.push({...res[id], _id:id})
     } 
    
   }
@@ -24,10 +24,10 @@ getList(){
 }
 postNew(username:string,password:string, role: string){
   
- const res= this.http.post('http://localhost:3000/suppliers-accounts/new',{"username":username,"password":password,"role":role})
+ const res= this.http.post('http://localhost:3000/suppliers-accounts',{"UserName":username,"Password":password,"Role":role})
  return res
 }
-deleteAccount(id:string){
+deleteAccount(id:number){
   return this.http.delete('http://localhost:3000/suppliers-accounts/'+id)
   
 }
