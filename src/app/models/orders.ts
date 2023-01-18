@@ -1,5 +1,6 @@
 export class Order {
-    id:string;
+    _id:string;
+    id:number
     order_Date: string;
         party_type: String;
         party_theme : String;
@@ -10,8 +11,9 @@ export class Order {
         cake_order:String; 
         balloons_order:String; 
         snacks_order:String; 
-        order_status:String;
+        order_status:string;
         clicked:boolean=false;
+        location:string
 
         
 }

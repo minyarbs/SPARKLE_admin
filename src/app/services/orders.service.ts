@@ -11,12 +11,12 @@ orders:Order[]
   constructor(private http:HttpClient) { }
   getOrders(status:string){
     this.orders=[]
-    return  this.http.get<{[key: string]: Order}>('http://localhost:3000/orders/order/'+status)
+    return  this.http.get<{[key: string]: Order}>('http://localhost:3000/orders/'+status)
     .pipe(map((res)=>{
       for(const key in res){
         
         if(res.hasOwnProperty(key)){
-        this.orders.push({...res[key], id:key})
+        this.orders.push({...res[key], _id:key})
         
        
       } 
@@ -24,5 +24,12 @@ orders:Order[]
     }
     }))
  
+  }
+  update(ord:Order){
+    ord.paid=true
+    return this.http.patch('http://localhost:3000/orders/'+ord.id,ord)
+  }
+  delete(id:number){
+    return this.http.delete('http://localhost:3000/orders/'+id)
   }
 }

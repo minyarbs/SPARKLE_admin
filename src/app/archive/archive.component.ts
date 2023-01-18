@@ -17,7 +17,11 @@ export class ArchiveComponent implements OnInit {
   }
   async getCompletedOrders() {
  
-    await lastValueFrom(this.service.getOrders('completed'))
+    await lastValueFrom(this.service.getOrders('completd'))
     this.completed_orders=this.service.orders
+  }
+  async delete(id:number){
+    await lastValueFrom(this.service.delete(id))
+    this.getCompletedOrders()
   }
 }

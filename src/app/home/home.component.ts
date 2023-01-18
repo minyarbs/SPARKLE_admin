@@ -3,6 +3,7 @@ import { lastValueFrom, withLatestFrom } from 'rxjs';
 import { Order } from '../models/orders';
 import { AuthService } from '../services/auth.service';
 import { OrdersService } from '../services/orders.service';
+import { ThemesService } from '../services/themes.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,7 @@ import { OrdersService } from '../services/orders.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  quote: string
+  quote: string='work hard and play harder'
   incompleted_orders: Order[];
   myDate = new Date();
   pourcentage_table: number[] = [];
@@ -23,13 +24,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getinCompletedOrders();
-    this.getQuote();
   }
 
 
   async getinCompletedOrders() {
     this.pourcentage_table = []
-    await lastValueFrom(this.service.getOrders('not completed'))
+    await lastValueFrom(this.service.getOrders('incompleted'))
     this.incompleted_orders = this.service.orders
     for (let i = 0; i < this.incompleted_orders.length; i++) {
       let num = 0;
@@ -42,16 +42,9 @@ export class HomeComponent implements OnInit {
     }
 
   }
-  seedetails(i: number) {
-    this.incompleted_orders[i].clicked = true
-  }
-  hidedetails(i: number) {
-    this.incompleted_orders[i].clicked = false
-  }
-  async getQuote() {
-    this.quote = await lastValueFrom(this.auth.getQuote())
-  }
-  completePay(id:string){
-    
+  
+  async completePay(ord:Order){
+    await lastValueFrom(this.service.update(ord))
+    this.getinCompletedOrders()
   }
 }
